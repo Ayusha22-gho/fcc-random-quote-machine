@@ -9,9 +9,13 @@ const styles = {
   container : {
     display : 'flex',//to vertically center the machine
     height : '100vh',
-    alignItems :'center'
+    alignItems :'center',
+    borderRadius :'10px',
+    
 
-  }
+  },
+  
+
 }
 
 class App extends Component {
@@ -20,10 +24,15 @@ class App extends Component {
 
     this.state = {
       quotes: [],
+      currentColor: 0,
       selectedQuotesIndex : null,
+      
+      
     }
     this.selectQuoteIndex = this.generateNewQuoteIndex.bind(this);
     this.assignNewQuoteIndex = this.assignNewQuoteIndex.bind(this);
+    // this.changeColor = this.changeColor.bind(this);
+   
   }
 
   componentDidMount() {
@@ -49,30 +58,59 @@ class App extends Component {
       return random(0 , this.state.quotes.length-1)
   }  
 
-  assignNewQuoteIndex() {
-    this.setState(
-      {
-        selectedQuotesIndex : this.generateNewQuoteIndex()
-      }
-    );
-  }
+  
+    assignNewQuoteIndex() {
 
+      this.setState(
+        {
+          selectedQuotesIndex : this.generateNewQuoteIndex()
+        }
+      );
+    }
+      // changeBg() {
+      // const { colors } = this.state;
+      // const color = colors[Math.floor(Math.random() * colors.length)];
+      // document.documentElement.style.backgroundColor = color;
+      // }
+
+      // changeColor = () => this.setState({
+      //   color: Math.floor(Math.random() * this.state.colors.length)
+      //   });
+
+      randomColor() {
+        const color = `rgb(
+          ${Math.floor(Math.random() * 155)},
+          ${Math.floor(Math.random() * 155)},
+          ${Math.floor(Math.random() * 155)})`;
+        return color;
+      }
+
+  
+  
   render() {
     // console.log(this.state.quotes);
     // console.log(this.state.selectedQuotesIndex);
     return (
-     
-      <Grid className ={this.props.classes.container} id = "quote-box"  justify = "center"  container>
+       <>
+       
+        <Grid className ={this.props.classes.container} id = "quote-box"  justify = "center"  container
+         >
+      
         <Grid xs = {11} lg = {8} item >
         { 
           this.selectedQuote ? 
-          <QuoteMachine selectedQuote = {this.selectedQuote}  assignNewQuoteIndex = {this.assignNewQuoteIndex}/>
+          <QuoteMachine selectedQuote = {this.selectedQuote}  assignNewQuoteIndex = {this.assignNewQuoteIndex} displayColor={this.randomColor} />
           : null 
         }
         </Grid>
       </Grid>
+   
+      </>
+      
     );
+  
   }
-}
 
+
+ }
 export default withStyles(styles)(App);
