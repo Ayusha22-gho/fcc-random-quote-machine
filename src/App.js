@@ -7,10 +7,10 @@ import {withStyles} from '@material-ui/core/styles';
 
 const styles = {
   container : {
-    display : 'flex',//to vertically center the machine
+    display : 'flex',
     height : '100vh',
     alignItems :'center',
-    borderRadius :'10px',
+    backgroundColor : 'pink'
     
 
   },
@@ -40,17 +40,14 @@ class App extends Component {
       .then(data => data.json())
       .then(quotes => this.setState({quotes}, this.assignNewQuoteIndex));
   }
-  // handleNextQuote() {
-  //   console.log("working");
-  // }
+  
   get selectedQuote() {
     if(!this.state.quotes.length || !Number.isInteger(this.state.selectedQuotesIndex)) {
       return undefined;
     }
     return this.state.quotes[this.state.selectedQuotesIndex];
   }
-  //returns an integer representating an index in state.quotes
-  //if state.quotes is empty, returns undefined
+  
   generateNewQuoteIndex() {
       if(!this.state.quotes.length) {
         return undefined;
@@ -67,15 +64,6 @@ class App extends Component {
         }
       );
     }
-      // changeBg() {
-      // const { colors } = this.state;
-      // const color = colors[Math.floor(Math.random() * colors.length)];
-      // document.documentElement.style.backgroundColor = color;
-      // }
-
-      // changeColor = () => this.setState({
-      //   color: Math.floor(Math.random() * this.state.colors.length)
-      //   });
 
       randomColor() {
         const color = `rgb(
@@ -88,10 +76,8 @@ class App extends Component {
   
   
   render() {
-    // console.log(this.state.quotes);
-    // console.log(this.state.selectedQuotesIndex);
     return (
-       <>
+       
        
         <Grid className ={this.props.classes.container} id = "quote-box"  justify = "center"  container
          >
@@ -103,14 +89,8 @@ class App extends Component {
           : null 
         }
         </Grid>
-      </Grid>
-   
-      </>
-      
+      </Grid>   
     );
-  
-  }
-
-
+   }
  }
 export default withStyles(styles)(App);

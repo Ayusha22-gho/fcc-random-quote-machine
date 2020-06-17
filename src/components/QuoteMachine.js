@@ -3,7 +3,7 @@ import {Card , CardActions, CardContent , Button}from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 
 
@@ -33,17 +33,14 @@ class QuoteMachine extends React.Component {
                 id = "tweet-quote"
                 target = "_blank"
                 href ={encodeURI(`https://twitter.com/intent/tweet?text=${this.props.selectedQuote.quote}  -${this.props.selectedQuote.author}&hashtags=myQuotesMachine`)}
-            >
-                <FontAwesomeIcon icon ={faTwitter} size = "xs" ></FontAwesomeIcon>
+                
+            ><span style = {{fontSize : "18px"}}>Twitter </span>
+                <FontAwesomeIcon icon ={faTwitter} size = "xs" style = {{marginLeft : "8px"}}></FontAwesomeIcon>
             </IconButton>
-            <IconButton
-                target = "_blank"
-                href = {`https://www.instagram.com/accounts/onetap/?next=%2F${this.props.selectedQuote.quote}`}
-               > <FontAwesomeIcon icon = {faInstagram} size = "xs"></FontAwesomeIcon>
-            </IconButton>
+            
             <Button id = "new-quote" size ="small"
-                className= "d-block text-right"
-                style={{ backgroundColor: randomColor, color : "white"}}
+                style={{ backgroundColor: randomColor, color : "white" , marginLeft: "auto"}}
+                
                 onClick={this.props.assignNewQuoteIndex}
              >Next Quote</Button>
         </CardActions>
@@ -58,4 +55,3 @@ class QuoteMachine extends React.Component {
 
 
 export default QuoteMachine;
-{/* `"${props.selectedQuote.quote}" - ${props.selectedQuote.author}` : ""} */}
